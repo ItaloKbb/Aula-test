@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fundamentos CSS | Tutorial por Bloom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav container"><a class="brand" href="index.html">&lt;Ensina<span>Dev</span>/&gt;</a><a class="back-link" href="index.html">← Todas as trilhas</a></nav></header>
+  <main>
+    <section class="lesson-hero container">
+      <p class="breadcrumb">Tutoriais / Trilha 02</p><p class="eyebrow">Apresentação e layout</p><h1>Ensinando fundamentos CSS</h1>
+      <p class="lead">Da leitura de uma regra à criação de uma interface responsiva e consistente.</p>
+      <div class="lesson-meta"><span class="pill">90 minutos</span><span class="pill">Iniciante</span><span class="pill">Prática guiada</span></div>
+      <aside class="objectives"><h2>Ao final, o estudante será capaz de:</h2><ul><li>identificar seletores, propriedades e valores;</li><li>aplicar Box Model, Flexbox e Grid;</li><li>avaliar e criar estilos responsivos.</li></ul></aside>
+    </section>
+    <div class="lesson-layout container">
+      <nav class="lesson-nav" aria-label="Etapas da aula"><strong>Níveis de Bloom</strong><a href="#lembrar">1. Lembrar</a><a href="#compreender">2. Compreender</a><a href="#aplicar">3. Aplicar</a><a href="#analisar">4. Analisar</a><a href="#avaliar">5. Avaliar</a><a href="#criar">6. Criar</a></nav>
+      <div>
+        <section class="bloom-block" id="lembrar">
+          <div class="level-label"><span>1</span>Lembrar</div><h2>Nomeie as partes de uma regra</h2>
+          <div class="demo"><pre><code>/* seletor */
+.cartao {
+  color: #172033;       /* propriedade: valor */
+  padding: 1rem;
+  border: 1px solid #ddd;
+}</code></pre></div>
+          <div class="lesson-card"><h3>Vocabulário essencial</h3><p><strong>Seletores:</strong> elemento <code>p</code>, classe <code>.card</code>, id <code>#menu</code>, atributo <code>[required]</code> e pseudo-classe <code>:hover</code>.</p><p><strong>Unidades:</strong> <code>px</code>, <code>%</code>, <code>rem</code>, <code>vw</code> e <code>vh</code>.</p></div>
+          <div class="exercise"><h3>Complete a regra</h3><p>Escreva uma regra que selecione todos os títulos de classe <code>destaque</code> e aplique a cor azul.</p></div>
+        </section>
+        <section class="bloom-block" id="compreender">
+          <div class="level-label"><span>2</span>Compreender</div><h2>Explique cascata e Box Model</h2>
+          <div class="lesson-card"><h3>Por que “cascata”?</h3><p>Quando regras competem, o navegador considera importância, especificidade e ordem. Um seletor mais específico normalmente vence; em empate, a última declaração vence.</p>
+          <pre><code>p { color: gray; }       /* especificidade 0-0-1 */
+.aviso { color: orange; } /* 0-1-0: vence */
+#erro { color: red; }     /* 1-0-0: vence ambos */</code></pre></div>
+          <div class="lesson-card"><h3>Modelo de caixa</h3><p>O conteúdo é cercado por <code>padding</code>, <code>border</code> e <code>margin</code>. Com <code>box-sizing: border-box</code>, padding e borda entram na largura declarada.</p></div>
+          <div class="exercise"><h3>Preveja</h3><p>Um elemento tem <code>width: 200px</code>, <code>padding: 20px</code> e borda de <code>2px</code>. Qual largura final sem e com <code>border-box</code>? Respostas: 244px e 200px.</p></div>
+        </section>
+        <section class="bloom-block" id="aplicar">
+          <div class="level-label"><span>3</span>Aplicar</div><h2>Estilize um conjunto de cartões</h2>
+          <div class="demo"><h3>Exemplo guiado</h3><pre><code>* { box-sizing: border-box; }
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.cartao {
+  padding: 1.25rem;
+  border: 1px solid #dfe3eb;
+  border-radius: 12px;
+  background: white;
+}
+
+.cartao:hover {
+  transform: translateY(-3px);
+}</code></pre></div>
+          <div class="exercise"><h3>Prática</h3><p>Aplique tipografia, cores, espaçamento e estado de hover ao cartão criado na aula de HTML. Teste em larguras diferentes.</p></div>
+        </section>
+        <section class="bloom-block" id="analisar">
+          <div class="level-label"><span>4</span>Analisar</div><h2>Compare Flexbox e Grid</h2>
+          <table class="method-table"><thead><tr><th>Critério</th><th>Flexbox</th><th>Grid</th></tr></thead><tbody><tr><td>Dimensão</td><td>Linha ou coluna</td><td>Linhas e colunas</td></tr><tr><td>Uso comum</td><td>Menu, alinhamento, grupo de botões</td><td>Galeria, dashboard, layout de página</td></tr><tr><td>Controle</td><td>Conteúdo orienta o fluxo</td><td>Layout define a estrutura</td></tr></tbody></table>
+          <div class="exercise"><h3>Escolha e justifique</h3><p>Para cada cenário — barra de navegação, galeria de fotos e centralização de um modal — escolha Flexbox ou Grid e explique o motivo.</p></div>
+          <p class="teacher-note"><strong>Resposta provável:</strong> Flexbox para navegação e modal; Grid para galeria. Aceite outra solução se a justificativa for tecnicamente coerente.</p>
+        </section>
+        <section class="bloom-block" id="avaliar">
+          <div class="level-label"><span>5</span>Avaliar</div><h2>Audite a qualidade do CSS</h2>
+          <div class="lesson-card"><ul class="checklist"><li>Os nomes das classes descrevem componentes ou funções?</li><li>Há repetição que poderia virar uma classe reutilizável?</li><li>O texto mantém contraste e tamanho legíveis?</li><li>O layout funciona em 320px e em telas grandes?</li><li>Estados de foco são visíveis para teclado?</li><li><code>!important</code> foi evitado?</li></ul></div>
+          <div class="exercise"><h3>Refatoração comentada</h3><p>Revise o CSS de um colega. Sugira três melhorias e indique o efeito esperado de cada uma.</p></div>
+        </section>
+        <section class="bloom-block" id="criar">
+          <div class="level-label"><span>6</span>Criar</div><h2>Crie um pequeno design system</h2>
+          <div class="exercise"><h3>Desafio final: landing page responsiva</h3><p>Defina variáveis para cores, espaçamento e raios. Crie botão, cartão, campo e navegação reutilizáveis. Organize uma landing page com Grid/Flexbox e pelo menos uma media query.</p>
+          <pre><code>:root {
+  --cor-primaria: #6d52d9;
+  --espaco: 1rem;
+  --raio: .75rem;
+}</code></pre>
+          <ul class="checklist"><li>Funciona sem rolagem horizontal.</li><li>Possui hierarquia visual clara.</li><li>Componentes compartilham padrões.</li></ul></div>
+        </section>
+      </div>
+    </div>
+    <a class="next-lesson container" href="javascript.html"><div><p>Próxima trilha</p><strong>Métodos JavaScript</strong></div><span>Continuar →</span></a>
+  </main>
+  <footer><div class="container"><span>&lt;EnsinaDev/&gt;</span><p>Trilha 02 · Fundamentos CSS</p></div></footer>
+</body>
+</html>

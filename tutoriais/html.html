@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tags HTML | Tutorial por Bloom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav container"><a class="brand" href="index.html">&lt;Ensina<span>Dev</span>/&gt;</a><a class="back-link" href="index.html">← Todas as trilhas</a></nav></header>
+  <main>
+    <section class="lesson-hero container">
+      <p class="breadcrumb">Tutoriais / Trilha 01</p><p class="eyebrow">Estrutura e significado</p>
+      <h1>Ensinando tags HTML</h1>
+      <p class="lead">Da identificação das tags à criação de uma página semântica e acessível.</p>
+      <div class="lesson-meta"><span class="pill">60–90 minutos</span><span class="pill">Iniciante</span><span class="pill">Prática individual</span></div>
+      <aside class="objectives"><h2>Ao final, o estudante será capaz de:</h2><ul><li>reconhecer tags e atributos frequentes;</li><li>explicar a importância da semântica;</li><li>construir e avaliar uma estrutura HTML acessível.</li></ul></aside>
+    </section>
+
+    <div class="lesson-layout container">
+      <nav class="lesson-nav" aria-label="Etapas da aula"><strong>Níveis de Bloom</strong><a href="#lembrar">1. Lembrar</a><a href="#compreender">2. Compreender</a><a href="#aplicar">3. Aplicar</a><a href="#analisar">4. Analisar</a><a href="#avaliar">5. Avaliar</a><a href="#criar">6. Criar</a></nav>
+      <div>
+        <section class="bloom-block" id="lembrar">
+          <div class="level-label"><span>1</span>Lembrar</div><h2>Reconheça as principais tags</h2>
+          <div class="lesson-card"><h3>Mapa essencial</h3>
+            <table class="method-table"><thead><tr><th>Grupo</th><th>Tags</th><th>Função</th></tr></thead><tbody>
+              <tr><td>Estrutura</td><td><code>html</code>, <code>head</code>, <code>body</code></td><td>Formam o documento</td></tr>
+              <tr><td>Semântica</td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>footer</code></td><td>Definem regiões</td></tr>
+              <tr><td>Conteúdo</td><td><code>h1</code>–<code>h6</code>, <code>p</code>, <code>a</code>, <code>img</code>, <code>ul</code>, <code>li</code></td><td>Apresentam informações</td></tr>
+              <tr><td>Formulário</td><td><code>form</code>, <code>label</code>, <code>input</code>, <code>button</code></td><td>Coletam dados</td></tr>
+            </tbody></table>
+          </div>
+          <div class="exercise"><h3>Cartões de memória</h3><p>Mostre uma tag. O estudante deve dizer sua função e citar um atributo possível. Exemplo: <code>&lt;img&gt;</code> → imagem; atributos <code>src</code> e <code>alt</code>.</p></div>
+        </section>
+
+        <section class="bloom-block" id="compreender">
+          <div class="level-label"><span>2</span>Compreender</div><h2>Explique estrutura e semântica</h2>
+          <div class="lesson-card"><h3>Tag não é aparência</h3><p>HTML comunica o significado do conteúdo. Um <code>&lt;h1&gt;</code> é um título principal, mesmo que CSS faça um parágrafo parecer maior. A semântica beneficia leitores de tela, mecanismos de busca e manutenção.</p>
+          <pre><code>&lt;!-- Genérico: não explica o conteúdo --&gt;
+&lt;div class="menu"&gt;...&lt;/div&gt;
+
+&lt;!-- Semântico: informa a função --&gt;
+&lt;nav aria-label="Menu principal"&gt;...&lt;/nav&gt;</code></pre></div>
+          <div class="exercise"><h3>Explique com suas palavras</h3><p>Qual é a diferença entre <code>&lt;section&gt;</code> e <code>&lt;div&gt;</code>? Resposta esperada: section agrupa um tema identificável; div é um contêiner sem significado próprio.</p></div>
+        </section>
+
+        <section class="bloom-block" id="aplicar">
+          <div class="level-label"><span>3</span>Aplicar</div><h2>Monte um cartão de artigo</h2>
+          <div class="demo"><h3>Exemplo guiado</h3><pre><code>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h2&gt;Aprendendo HTML semântico&lt;/h2&gt;
+    &lt;p&gt;Publicado em &lt;time datetime="2026-07-29"&gt;29/07/2026&lt;/time&gt;&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;img src="html.jpg" alt="Código HTML em uma tela"&gt;
+  &lt;p&gt;Semântica torna o conteúdo mais compreensível.&lt;/p&gt;
+  &lt;a href="/artigo"&gt;Ler artigo completo&lt;/a&gt;
+&lt;/article&gt;</code></pre></div>
+          <div class="exercise"><h3>Prática</h3><p>Crie um artigo sobre um hobby. Use título, data, imagem com texto alternativo, dois parágrafos e um link.</p></div>
+        </section>
+
+        <section class="bloom-block" id="analisar">
+          <div class="level-label"><span>4</span>Analisar</div><h2>Encontre problemas na marcação</h2>
+          <div class="demo"><h3>Código para investigação</h3><pre><code>&lt;div class="titulo"&gt;Receitas rápidas&lt;/div&gt;
+&lt;div onclick="abrir()"&gt;Ver receita&lt;/div&gt;
+&lt;img src="bolo.jpg"&gt;
+&lt;input type="email" placeholder="E-mail"&gt;</code></pre></div>
+          <div class="exercise"><h3>Diagnóstico</h3><p>Localize quatro problemas e proponha correções. Pistas: hierarquia de títulos, controle clicável, texto alternativo e rótulo do campo.</p></div>
+          <p class="teacher-note"><strong>Mediação:</strong> peça que o estudante justifique cada troca pela função do elemento, não pela aparência.</p>
+        </section>
+
+        <section class="bloom-block" id="avaliar">
+          <div class="level-label"><span>5</span>Avaliar</div><h2>Revise como um desenvolvedor</h2>
+          <div class="lesson-card"><h3>Checklist de revisão</h3><ul class="checklist"><li>Existe somente um título principal claro?</li><li>A hierarquia de títulos não pula níveis sem motivo?</li><li>Imagens informativas possuem <code>alt</code> descritivo?</li><li>Campos estão associados a <code>label</code>?</li><li>Botões executam ações e links navegam?</li><li>As regiões principais usam tags semânticas?</li></ul></div>
+          <div class="exercise"><h3>Revisão em dupla</h3><p>Troque o exercício anterior com um colega. Dê uma nota de 0 a 2 para semântica, acessibilidade e clareza, justificando cada nota.</p></div>
+        </section>
+
+        <section class="bloom-block" id="criar">
+          <div class="level-label"><span>6</span>Criar</div><h2>Produza uma página autoral</h2>
+          <div class="exercise"><h3>Desafio final: página de evento</h3><p>Construa a página HTML de um evento com cabeçalho, navegação por âncoras, apresentação, programação em lista, formulário de inscrição e rodapé.</p><ul class="checklist"><li>Use ao menos oito tags semânticas diferentes.</li><li>Inclua links, imagem, lista e formulário acessíveis.</li><li>Valide o documento e explique três escolhas de marcação.</li></ul></div>
+        </section>
+      </div>
+    </div>
+    <a class="next-lesson container" href="css.html"><div><p>Próxima trilha</p><strong>Fundamentos CSS</strong></div><span>Continuar →</span></a>
+  </main>
+  <footer><div class="container"><span>&lt;EnsinaDev/&gt;</span><p>Trilha 01 · Tags HTML</p></div></footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Métodos JavaScript | Tutorial por Bloom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav container"><a class="brand" href="index.html">&lt;Ensina<span>Dev</span>/&gt;</a><a class="back-link" href="index.html">← Todas as trilhas</a></nav></header>
+  <main>
+    <section class="lesson-hero container">
+      <p class="breadcrumb">Tutoriais / Trilha 03</p><p class="eyebrow">Dados e comportamento</p><h1>Ensinando métodos JavaScript</h1>
+      <p class="lead">De reconhecer métodos de string e array até escolher, combinar e criar transformações de dados.</p>
+      <div class="lesson-meta"><span class="pill">90–120 minutos</span><span class="pill">Básico/intermediário</span><span class="pill">Console + navegador</span></div>
+      <aside class="objectives"><h2>Ao final, o estudante será capaz de:</h2><ul><li>distinguir métodos por tipo e finalidade;</li><li>aplicar métodos de string, array e DOM;</li><li>avaliar e compor soluções sem loops desnecessários.</li></ul></aside>
+    </section>
+    <div class="lesson-layout container">
+      <nav class="lesson-nav" aria-label="Etapas da aula"><strong>Níveis de Bloom</strong><a href="#lembrar">1. Lembrar</a><a href="#compreender">2. Compreender</a><a href="#aplicar">3. Aplicar</a><a href="#analisar">4. Analisar</a><a href="#avaliar">5. Avaliar</a><a href="#criar">6. Criar</a></nav>
+      <div>
+        <section class="bloom-block" id="lembrar">
+          <div class="level-label"><span>1</span>Lembrar</div><h2>Associe método e finalidade</h2>
+          <table class="method-table"><thead><tr><th>Tipo</th><th>Método</th><th>Resultado</th></tr></thead><tbody>
+            <tr><td>String</td><td><code>trim()</code>, <code>toLowerCase()</code>, <code>includes()</code>, <code>split()</code></td><td>Limpar, normalizar, buscar, dividir</td></tr>
+            <tr><td>Array</td><td><code>map()</code>, <code>filter()</code>, <code>find()</code>, <code>some()</code>, <code>reduce()</code></td><td>Transformar, filtrar, localizar, testar, acumular</td></tr>
+            <tr><td>DOM</td><td><code>querySelector()</code>, <code>createElement()</code>, <code>append()</code>, <code>classList.toggle()</code></td><td>Selecionar, criar, inserir, alternar classe</td></tr>
+          </tbody></table>
+          <div class="exercise"><h3>Jogo de associação</h3><p>Apresente o objetivo “quero apenas os produtos baratos”. O estudante escolhe <code>filter()</code>. Repita com transformar, localizar e somar.</p></div>
+        </section>
+        <section class="bloom-block" id="compreender">
+          <div class="level-label"><span>2</span>Compreender</div><h2>Entenda retorno e mutação</h2>
+          <div class="lesson-card"><h3>Cada método tem um contrato</h3><p><code>map()</code> retorna um novo array de mesmo tamanho. <code>filter()</code> retorna um novo array com zero ou mais itens. <code>find()</code> retorna um item ou <code>undefined</code>. <code>reduce()</code> retorna o valor acumulado.</p>
+          <pre><code>const numeros = [1, 2, 3];
+const dobrados = numeros.map(numero => numero * 2);
+
+console.log(numeros);  // [1, 2, 3]
+console.log(dobrados); // [2, 4, 6]</code></pre></div>
+          <div class="lesson-card"><h3>Métodos que alteram o array</h3><p><code>push()</code>, <code>pop()</code>, <code>splice()</code>, <code>sort()</code> e <code>reverse()</code> podem modificar o array original. Já <code>map()</code>, <code>filter()</code>, <code>slice()</code> e <code>toSorted()</code> retornam novos valores.</p></div>
+          <div class="exercise"><h3>Preveja a saída</h3><p>Antes de executar, diga o resultado e informe se o array original muda: <code>const x = [3, 1, 2]; const y = x.sort();</code>.</p></div>
+        </section>
+        <section class="bloom-block" id="aplicar">
+          <div class="level-label"><span>3</span>Aplicar</div><h2>Transforme uma lista de produtos</h2>
+          <div class="demo"><h3>Exemplo guiado</h3><pre><code>const produtos = [
+  { nome: "Teclado", preco: 120, estoque: 4 },
+  { nome: "Mouse", preco: 70, estoque: 0 },
+  { nome: "Monitor", preco: 900, estoque: 2 }
+];
+
+const disponiveis = produtos
+  .filter(produto => produto.estoque > 0)
+  .map(produto => ({
+    ...produto,
+    nome: produto.nome.toUpperCase()
+  }));
+
+const total = disponiveis.reduce(
+  (soma, produto) => soma + produto.preco,
+  0
+);</code></pre></div>
+          <div class="exercise"><h3>Prática em três etapas</h3><ol><li>Filtre produtos com preço abaixo de R$ 500.</li><li>Crie um array contendo apenas os nomes.</li><li>Some o valor dos produtos em estoque.</li></ol></div>
+        </section>
+        <section class="bloom-block" id="analisar">
+          <div class="level-label"><span>4</span>Analisar</div><h2>Escolha o método correto</h2>
+          <div class="lesson-card"><h3>Perguntas de decisão</h3><ul class="checklist"><li>Precisa de todos transformados? <code>map()</code>.</li><li>Precisa de alguns itens? <code>filter()</code>.</li><li>Precisa do primeiro item? <code>find()</code>.</li><li>Precisa de verdadeiro ou falso? <code>some()</code> ou <code>every()</code>.</li><li>Precisa condensar em um valor? <code>reduce()</code>.</li></ul></div>
+          <div class="demo"><h3>Analise o erro lógico</h3><pre><code>// Objetivo: encontrar um usuário pelo id
+const resultado = usuarios.filter(
+  usuario => usuario.id === idBuscado
+);
+console.log(resultado.nome); // undefined</code></pre></div>
+          <div class="exercise"><h3>Diagnóstico</h3><p>Explique o erro e corrija. <code>filter()</code> devolve array; para obter um único usuário, use <code>find()</code> e trate a possibilidade de <code>undefined</code>.</p></div>
+        </section>
+        <section class="bloom-block" id="avaliar">
+          <div class="level-label"><span>5</span>Avaliar</div><h2>Compare clareza e eficiência</h2>
+          <div class="demo"><h3>Duas soluções</h3><pre><code>// A: duas passagens, intenção clara
+const ativos = usuarios.filter(u => u.ativo);
+const nomes = ativos.map(u => u.nome);
+
+// B: uma passagem, mais controle
+const nomesAtivos = usuarios.reduce((nomes, u) => {
+  if (u.ativo) nomes.push(u.nome);
+  return nomes;
+}, []);</code></pre></div>
+          <div class="exercise"><h3>Defenda uma escolha</h3><p>Qual solução usaria em uma lista pequena de interface? E em milhões de registros? Avalie legibilidade, manutenção e custo de processamento.</p></div>
+          <p class="teacher-note"><strong>Ponto central:</strong> a solução mais curta nem sempre é a melhor. A decisão depende do contexto, e a justificativa é parte da competência.</p>
+        </section>
+        <section class="bloom-block" id="criar">
+          <div class="level-label"><span>6</span>Criar</div><h2>Crie uma busca dinâmica</h2>
+          <div class="exercise"><h3>Desafio final: catálogo filtrável</h3><p>Renderize produtos no DOM e crie uma busca por nome. Normalize o texto com <code>trim()</code> e <code>toLowerCase()</code>, filtre com <code>filter()</code> e gere os cartões com <code>map()</code>.</p>
+          <pre><code>function filtrarProdutos(termo) {
+  const busca = termo.trim().toLowerCase();
+  return produtos.filter(produto =>
+    produto.nome.toLowerCase().includes(busca)
+  );
+}</code></pre>
+          <ul class="checklist"><li>Exiba mensagem quando não houver resultados.</li><li>Inclua filtro por faixa de preço.</li><li>Não altere o array original.</li><li>Separe busca, renderização e eventos em funções.</li></ul></div>
+        </section>
+      </div>
+    </div>
+    <a class="next-lesson container" href="projeto.html"><div><p>Próxima trilha</p><strong>Projeto integrador</strong></div><span>Continuar →</span></a>
+  </main>
+  <footer><div class="container"><span>&lt;EnsinaDev/&gt;</span><p>Trilha 03 · Métodos JavaScript</p></div></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Integrador | Tutorial por Bloom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav container"><a class="brand" href="index.html">&lt;Ensina<span>Dev</span>/&gt;</a><a class="back-link" href="index.html">← Todas as trilhas</a></nav></header>
+  <main>
+    <section class="lesson-hero container">
+      <p class="breadcrumb">Tutoriais / Trilha 04</p><p class="eyebrow">HTML + CSS + JavaScript</p><h1>Projeto: lista de estudos</h1>
+      <p class="lead">Uma sequência didática para integrar estrutura, estilo e comportamento em um produto funcional.</p>
+      <div class="lesson-meta"><span class="pill">2–3 aulas</span><span class="pill">Projeto em dupla</span><span class="pill">Avaliação formativa</span></div>
+      <aside class="objectives"><h2>Produto esperado</h2><p>Uma aplicação que adiciona, filtra, conclui e remove tarefas de estudo, salva os dados no navegador e funciona em celular e desktop.</p></aside>
+    </section>
+    <div class="lesson-layout container">
+      <nav class="lesson-nav" aria-label="Etapas da aula"><strong>Níveis de Bloom</strong><a href="#lembrar">1. Lembrar</a><a href="#compreender">2. Compreender</a><a href="#aplicar">3. Aplicar</a><a href="#analisar">4. Analisar</a><a href="#avaliar">5. Avaliar</a><a href="#criar">6. Criar</a></nav>
+      <div>
+        <section class="bloom-block" id="lembrar">
+          <div class="level-label"><span>1</span>Lembrar</div><h2>Recupere os conhecimentos prévios</h2>
+          <div class="lesson-card"><h3>Mapa do projeto</h3><ul><li><strong>HTML:</strong> formulário, input, button, ul e template.</li><li><strong>CSS:</strong> classes, Box Model, Flexbox, estados e media query.</li><li><strong>JavaScript:</strong> querySelector, eventos, arrays, map, filter e localStorage.</li></ul></div>
+          <div class="exercise"><h3>Diagnóstico de 5 minutos</h3><p>Peça que cada dupla desenhe três colunas — estrutura, aparência e comportamento — e distribua os conceitos acima.</p></div>
+        </section>
+        <section class="bloom-block" id="compreender">
+          <div class="level-label"><span>2</span>Compreender</div><h2>Explique o fluxo de dados</h2>
+          <div class="lesson-card"><h3>Modelo mental</h3><p><strong>Evento → atualizar dados → salvar → renderizar.</strong> O array de tarefas é a fonte de verdade. A interface apenas representa seu estado atual.</p>
+          <pre><code>Usuário envia formulário
+  → validar texto
+  → adicionar objeto ao array
+  → salvar no localStorage
+  → redesenhar a lista</code></pre></div>
+          <div class="exercise"><h3>Explique o risco</h3><p>Por que editar somente o HTML visível causa problemas? Porque o array e o armazenamento deixam de representar a tela.</p></div>
+        </section>
+        <section class="bloom-block" id="aplicar">
+          <div class="level-label"><span>3</span>Aplicar</div><h2>Construa a versão mínima</h2>
+          <div class="demo"><h3>1. Estrutura HTML</h3><pre><code>&lt;main&gt;
+  &lt;h1&gt;Meu plano de estudos&lt;/h1&gt;
+  &lt;form id="form-tarefa"&gt;
+    &lt;label for="tarefa"&gt;Nova tarefa&lt;/label&gt;
+    &lt;input id="tarefa" required&gt;
+    &lt;button&gt;Adicionar&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;ul id="lista-tarefas"&gt;&lt;/ul&gt;
+&lt;/main&gt;</code></pre></div>
+          <div class="demo"><h3>2. Comportamento inicial</h3><pre><code>const form = document.querySelector("#form-tarefa");
+const campo = document.querySelector("#tarefa");
+const lista = document.querySelector("#lista-tarefas");
+let tarefas = [];
+
+form.addEventListener("submit", evento => {
+  evento.preventDefault();
+  tarefas.push({
+    id: crypto.randomUUID(),
+    texto: campo.value.trim(),
+    concluida: false
+  });
+  campo.value = "";
+  renderizar();
+});</code></pre></div>
+          <div class="exercise"><h3>Incremento</h3><p>Implemente <code>renderizar()</code> usando <code>map()</code> ou criação de elementos. Depois, adicione CSS para organizar formulário e lista.</p></div>
+        </section>
+        <section class="bloom-block" id="analisar">
+          <div class="level-label"><span>4</span>Analisar</div><h2>Divida responsabilidades</h2>
+          <div class="lesson-card"><h3>Arquitetura sugerida</h3><table class="method-table"><thead><tr><th>Função</th><th>Responsabilidade</th></tr></thead><tbody><tr><td><code>adicionarTarefa()</code></td><td>Validar e alterar o array</td></tr><tr><td><code>alternarTarefa(id)</code></td><td>Atualizar o estado concluída</td></tr><tr><td><code>removerTarefa(id)</code></td><td>Filtrar o item pelo id</td></tr><tr><td><code>salvarTarefas()</code></td><td>Persistir em JSON</td></tr><tr><td><code>renderizar()</code></td><td>Sincronizar DOM com dados</td></tr></tbody></table></div>
+          <div class="exercise"><h3>Diagrama de dependências</h3><p>Identifique quais funções alteram dados, quais alteram interface e em quais pontos <code>salvarTarefas()</code> deve ser chamada.</p></div>
+        </section>
+        <section class="bloom-block" id="avaliar">
+          <div class="level-label"><span>5</span>Avaliar</div><h2>Teste e revise o produto</h2>
+          <div class="lesson-card"><h3>Roteiro de testes</h3><ul class="checklist"><li>Impede tarefa vazia ou composta só por espaços.</li><li>Adiciona duas tarefas sem perder a primeira.</li><li>Conclui e reabre uma tarefa.</li><li>Remove apenas a tarefa selecionada.</li><li>Mantém dados depois de recarregar.</li><li>Permite uso por teclado e em tela pequena.</li></ul></div>
+          <div class="exercise"><h3>Teste cruzado</h3><p>Cada dupla testa a aplicação de outra. Registre passos, resultado esperado, resultado encontrado e gravidade do problema.</p></div>
+          <p class="teacher-note"><strong>Regra de feedback:</strong> descreva o comportamento observado e seu impacto antes de sugerir uma correção.</p>
+        </section>
+        <section class="bloom-block" id="criar">
+          <div class="level-label"><span>6</span>Criar</div><h2>Personalize e apresente</h2>
+          <div class="exercise"><h3>Produto autoral</h3><p>Escolha pelo menos duas extensões e redesenhe a identidade visual:</p><ul class="checklist"><li>Filtros: todas, pendentes e concluídas.</li><li>Prioridade ou categoria de estudo.</li><li>Contador e barra de progresso.</li><li>Edição do texto da tarefa.</li><li>Data limite e ordenação.</li><li>Tema claro/escuro.</li></ul></div>
+          <div class="lesson-card"><h3>Apresentação final — 5 minutos</h3><ol><li>Demonstre o fluxo principal.</li><li>Explique uma decisão de HTML, uma de CSS e uma de JavaScript.</li><li>Mostre um problema encontrado e como foi resolvido.</li><li>Indique a próxima melhoria.</li></ol></div>
+          <div class="lesson-card"><h3>Rubrica — 100 pontos</h3><table class="method-table"><thead><tr><th>Critério</th><th>Pontos</th><th>Evidência</th></tr></thead><tbody><tr><td>HTML</td><td>20</td><td>Semântica, rótulos e hierarquia</td></tr><tr><td>CSS</td><td>20</td><td>Consistência, responsividade e foco</td></tr><tr><td>JavaScript</td><td>30</td><td>Funcionalidade, métodos e organização</td></tr><tr><td>Testes</td><td>15</td><td>Casos executados e correções</td></tr><tr><td>Explicação</td><td>15</td><td>Justificativas e domínio do projeto</td></tr></tbody></table></div>
+        </section>
+      </div>
+    </div>
+    <a class="next-lesson container" href="index.html"><div><p>Trilha concluída</p><strong>Voltar aos tutoriais</strong></div><span>Início →</span></a>
+  </main>
+  <footer><div class="container"><span>&lt;EnsinaDev/&gt;</span><p>Trilha 04 · Projeto integrador</p></div></footer>
+</body>
+</html>
